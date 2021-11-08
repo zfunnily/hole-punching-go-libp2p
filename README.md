@@ -48,3 +48,5 @@ func (hs *Service) handleNewStream(s network.Stream) {
 // Peer B sees the underlying connection as an outbound connection.
 }
 ```
+
+博客地址：https://zfunnily.github.io/2021/11/gop2p%E5%9B%9B/
