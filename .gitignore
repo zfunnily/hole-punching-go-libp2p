@@ -1,0 +1,5 @@
+*.swp
+.idea
+.vscode
+relay-server
+chat
