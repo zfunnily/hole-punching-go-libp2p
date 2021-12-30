@@ -49,4 +49,4 @@ func (hs *Service) handleNewStream(s network.Stream) {
 }
 ```
 
-博客地址：https://zfunnily.github.io/2021/11/gop2p%E5%9B%9B/
+博客地址：https://zfunnily.github.io/2021/11/gop2pfour/
