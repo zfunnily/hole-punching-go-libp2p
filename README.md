@@ -49,4 +49,8 @@ func (hs *Service) handleNewStream(s network.Stream) {
 }
 ```
 
+## 更改日志
+- 22/04/29 增加一个ubuntu下可执行的relay-server
+
+
 博客地址：https://zfunnily.github.io/2021/11/gop2pfour/
