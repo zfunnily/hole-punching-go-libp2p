@@ -51,6 +51,10 @@ func (hs *Service) handleNewStream(s network.Stream) {
 
 ## 更改日志
 - 22/04/29 增加一个ubuntu下可执行的relay-server
+- 22/04/29 chat.go注释直连代码. 只能通过中继模式通信。
+- go-libp2p的代码打洞的代码都已经写好了。看测试用例，理解了之后就能写出来了。
+- 后续有时间再研究。
+
 
 
 博客地址：https://zfunnily.github.io/2021/11/gop2pfour/

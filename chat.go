@@ -69,7 +69,10 @@ func (p *NodeProtocol)onRsp(s network.Stream) {
 func (p* NodeProtocol) onFirstP2PMsg(s network.Stream)  {
 	buf, _ := ioutil.ReadAll(s)
 	log.Println("receive onFirstP2PMsg: ", string(buf))
+	//p.node.sendMessage(p.node.chatP2PAddr.ID, holepunch.Protocol, "this is holepunchProtocol")
+	p.node.sendMessage(p.node.chatP2PAddr.ID, holepunch.Protocol, "Hello Im " + p.node.chatP2PAddr.ID.Pretty())
 	time.Sleep(5*time.Second)
+
 	p.node.CmdP2P()
 }
 
@@ -201,6 +204,7 @@ func (n* Node)ConnectNode(nodePeerID string, nodeAddr string) {
 	n.chatP2PAddr = &chatTargetAddrInfo
 	n.sendMessage(chatTargetAddrInfo.ID, FirstP2PMsg, "Hello Im " + chatTargetAddrInfo.ID.Pretty())
 	//n.CmdRelay()
+
 }
 
 func (n *Node)CmdP2P()  {
@@ -208,12 +212,15 @@ func (n *Node)CmdP2P()  {
 	peerInfo := n.chatP2PAddr
 
 	n.Peerstore().AddAddrs(peerInfo.ID, peerInfo.Addrs, peerstore.ConnectedAddrTTL)
-	err := n.HoleService.DirectConnect(peerInfo.ID)
-	if err != nil {
-		log.Println("DirectConnect error: ")
-		log.Println(err.Error())
-		return
-	}
+	_ = n.Host.Network().ConnsToPeer(peerInfo.ID)
+
+	//直连代码被拦截掉了。
+	//err := n.HoleService.DirectConnect(peerInfo.ID)
+	//if err != nil {
+	//	log.Println("DirectConnect error: ")
+	//	log.Println(err.Error())
+	//	return
+	//}
 
 	s, err := n.NewStream(n.Ctx, peerInfo.ID, P2PMsg)
 	if err != nil {
